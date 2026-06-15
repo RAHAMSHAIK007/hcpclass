@@ -1,0 +1,27 @@
+name: Enterprise Testing Suite
+
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: 
+
+jobs:
+  test-on-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1 - Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Step 2 - Run Linux Tests
+        run: echo "Running tests on an ephemeral Linux VM"
+
+  test-on-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Step 1 - Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Step 2 - Run Windows Tests
+        run: echo "Verifying cross-platform compatibility on Windows!"
