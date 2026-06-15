@@ -2,18 +2,17 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_instance" "example" {
-  count         = 10
-  ami           = "ami-00fa360e28f425da0"
-  instance_type = "t3.micro"
-
+resource "aws_instance" "one" {
+  count                  = 4
+  ami                    = "ami-0ecb62995f68bb549"
+  instance_type          = "c7i-flex.large"
+  key_name               = "rahamdocker"
+  vpc_security_group_ids = ["sg-0ddd6bb55cfb8039c"]
   tags = {
-    Name = "raham-instance-one"
+    Name = var.instance_names[count.index]
   }
 }
 
-
-
-
-
-
+variable "instance_names" {
+  default = ["jenkins", "tomcat-1", "tomcat-2", "Monitoring server"]
+}
